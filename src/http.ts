@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  HTTP client — @freecustom/email SDK
+//  HTTP client — freecustom-email SDK
 //  Handles: auth headers, timeout, retry with backoff, error mapping
 // ─────────────────────────────────────────────────────────────────────────────
 import {
@@ -60,7 +60,7 @@ export class HttpClient {
           headers: {
             Authorization:  `Bearer ${this.apiKey}`,
             'Content-Type': 'application/json',
-            'User-Agent':   '@freecustom/email-sdk/1.0.0',
+            'User-Agent':   'freecustom-email-sdk/1.0.0',
           },
           body:   body !== undefined ? JSON.stringify(body) : null,
           signal: options.signal ?? controller.signal,

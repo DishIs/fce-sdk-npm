@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Errors — @freecustom/email SDK
+//  Errors — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { FreecustomEmailErrorOptions } from './types.js';
 

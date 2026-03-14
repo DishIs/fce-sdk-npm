@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Messages resource — @freecustom/email SDK
+//  Messages resource — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { HttpClient } from '../http.js';
 import type {

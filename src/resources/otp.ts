@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  OTP resource — @freecustom/email SDK
+//  OTP resource — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { HttpClient } from '../http.js';
 import type { OtpResult } from '../types.js';

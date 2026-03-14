@@ -1,15 +1,15 @@
-# @freecustom/email — JavaScript/TypeScript SDK
+# freecustom-email — JavaScript/TypeScript SDK
 # Official SDK · Disposable inboxes · OTP extraction · Real-time WebSocket
 # ─────────────────────────────────────────────────────────────────────────────
 
 ## Installation
 
 ```bash
-npm install @freecustom/email
+npm install freecustom-email
 # or
-pnpm add @freecustom/email
+pnpm add freecustom-email
 # or
-yarn add @freecustom/email
+yarn add freecustom-email
 ```
 
 ---
@@ -17,7 +17,7 @@ yarn add @freecustom/email
 ## Quick Start
 
 ```typescript
-import { FreecustomEmailClient } from '@freecustom/email';
+import { FreecustomEmailClient } from 'freecustom-email';
 
 const client = new FreecustomEmailClient({
   apiKey: 'fce_your_api_key_here',
@@ -256,7 +256,7 @@ import {
   NotFoundError,
   TimeoutError,
   FreecustomEmailError,
-} from '@freecustom/email';
+} from 'freecustom-email';
 
 try {
   const otp = await client.otp.get('mytest@ditube.info');
@@ -292,7 +292,7 @@ import type {
   UsageStats,
   WsConnectedEvent,
   WsNewEmailEvent,
-} from '@freecustom/email';
+} from 'freecustom-email';
 ```
 
 ---
@@ -312,6 +312,6 @@ import type {
 ## Links
 
 - **Playground:** https://freecustom.email/api/playground
-- **Docs:** https://freecustom.email/docs/api
-- **Dashboard:** https://freecustom.email/dashboard
+- **Docs:** https://freecustom.email/api/docs
+- **Dashboard:** https://freecustom.email/api/dashboard
 - **Pricing:** https://freecustom.email/api/pricing

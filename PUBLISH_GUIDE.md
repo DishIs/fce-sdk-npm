@@ -1,11 +1,11 @@
-# @freecustom/email SDK — npm Publish Guide
+# freecustom-email SDK — npm Publish Guide
 # ─────────────────────────────────────────────────────────────────────────────
 
 ══════════════════════════════════════════════════════════════
 FILE STRUCTURE
 ══════════════════════════════════════════════════════════════
 
-@freecustom/email/
+freecustom-email/
 ├── package.json
 ├── tsconfig.json
 ├── tsup.config.ts
@@ -56,8 +56,8 @@ STEP 3 — BUILD
 npm run build
 
 # tsup builds two formats simultaneously:
-#   dist/index.js    ← ESM  (import { FreecustomEmailClient } from '@freecustom/email')
-#   dist/index.cjs   ← CJS  (const { FreecustomEmailClient } = require('@freecustom/email'))
+#   dist/index.js    ← ESM  (import { FreecustomEmailClient } from 'freecustom-email')
+#   dist/index.cjs   ← CJS  (const { FreecustomEmailClient } = require('freecustom-email'))
 #   dist/index.d.ts  ← TypeScript declarations
 
 # Verify dist/ exists and has all three files before publishing
@@ -85,7 +85,7 @@ npm install /path/to/sdk/freecustom-email-1.0.0.tgz
 
 # Create test.mjs:
 cat > test.mjs << 'EOF'
-import { FreecustomEmailClient } from '@freecustom/email';
+import { FreecustomEmailClient } from 'freecustom-email';
 
 const client = new FreecustomEmailClient({
   apiKey: 'fce_your_real_key',
@@ -106,7 +106,7 @@ node test.mjs
 STEP 6 — CREATE npm ORGANISATION (one-time)
 ══════════════════════════════════════════════════════════════
 
-# You need an npm org for scoped packages like @freecustom/email
+# You need an npm org for scoped packages like freecustom-email
 # Go to: https://www.npmjs.com/org/create
 # Org name: freecustom
 # This lets you publish under @freecustom/...
@@ -153,10 +153,10 @@ npm publish --access public
 
 # Output:
 #   npm notice Publishing to https://registry.npmjs.org/
-#   + @freecustom/email@1.0.0
+#   + freecustom-email@1.0.0
 
 # Verify it's live:
-npm info @freecustom/email
+npm info freecustom-email
 
 ══════════════════════════════════════════════════════════════
 STEP 10 — PUBLISHING UPDATES
@@ -183,13 +183,13 @@ npm publish --access public
 STEP 11 — POST-PUBLISH CHECKLIST
 ══════════════════════════════════════════════════════════════
 
-□ Package visible at: https://www.npmjs.com/package/@freecustom/email
+□ Package visible at: https://www.npmjs.com/package/freecustom-email
 □ README renders correctly on npm page
-□ Types work: npm install @freecustom/email && tsc in a test project
-□ ESM works: import { FreecustomEmailClient } from '@freecustom/email'
-□ CJS works: const { FreecustomEmailClient } = require('@freecustom/email')
+□ Types work: npm install freecustom-email && tsc in a test project
+□ ESM works: import { FreecustomEmailClient } from 'freecustom-email'
+□ CJS works: const { FreecustomEmailClient } = require('freecustom-email')
 □ Add install badge to your docs:
-    [![npm](https://img.shields.io/npm/v/@freecustom/email)](https://www.npmjs.com/package/@freecustom/email)
+    [![npm](https://img.shields.io/npm/v/freecustom-email)](https://www.npmjs.com/package/freecustom-email)
 
 ══════════════════════════════════════════════════════════════
 STEP 12 — ADD TO YOUR DOCS
@@ -197,7 +197,7 @@ STEP 12 — ADD TO YOUR DOCS
 
 Update freecustom.email/docs/api to include SDK installation:
 
-  npm install @freecustom/email
+  npm install freecustom-email
 
 And link to the README/npm page. This is the primary discovery
 path for developers who land on your docs.
@@ -210,14 +210,14 @@ ERROR: "You must be logged in to publish packages"
 → Run: npm login
 
 ERROR: "Package name too similar to existing package"
-→ Your package name is unique — @freecustom/email should be fine
+→ Your package name is unique — freecustom-email should be fine
 
 ERROR: "403 Forbidden — org does not exist"
 → Create the npm org first: https://www.npmjs.com/org/create
 
 ERROR: ESM import fails in Node.js
 → Make sure your consumer package.json has "type": "module"
-   OR use the .cjs build: require('@freecustom/email')
+   OR use the .cjs build: require('freecustom-email')
 
 ERROR: "Cannot find module ws"
 → ws is a peer dependency for Node.js. Run: npm install ws

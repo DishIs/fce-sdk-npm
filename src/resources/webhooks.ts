@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Webhooks resource — @freecustom/email SDK
+//  Webhooks resource — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { HttpClient } from '../http.js';
 import type {

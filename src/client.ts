@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  FreecustomEmailClient — @freecustom/email SDK main entry point
+//  FreecustomEmailClient — freecustom-email SDK main entry point
 // ─────────────────────────────────────────────────────────────────────────────
 import { HttpClient }       from './http.js';
 import { WsClient }         from './ws-client.js';

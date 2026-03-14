@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Domains resource — @freecustom/email SDK
+//  Domains resource — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { HttpClient } from '../http.js';
 import type {

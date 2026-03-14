@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  WebSocket Client — @freecustom/email SDK
+//  WebSocket Client — freecustom-email SDK
 //
 //  Handles:
 //    - Auto-reconnect with exponential backoff

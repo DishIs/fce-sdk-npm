@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Account resource — @freecustom/email SDK
+//  Account resource — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 import type { HttpClient } from '../http.js';
 import type { ApiResponse, AccountInfo, UsageStats } from '../types.js';

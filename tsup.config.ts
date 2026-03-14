@@ -12,7 +12,7 @@ export default defineConfig({
   external: ['ws'],
   esbuildOptions(options) {
     options.banner = {
-      js: '/* @freecustom/email SDK — https://freecustom.email */',
+      js: '/* freecustom-email SDK — https://freecustom.email */',
     };
   },
 });

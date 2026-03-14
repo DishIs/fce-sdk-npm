@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  Public API — @freecustom/email SDK
+//  Public API — freecustom-email SDK
 // ─────────────────────────────────────────────────────────────────────────────
 
 export { FreecustomEmailClient } from './client.js';
