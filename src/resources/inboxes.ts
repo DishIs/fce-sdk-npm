@@ -38,6 +38,24 @@ export class InboxesResource {
   /**
    * Unregister an inbox from your API account.
    */
+  /**
+   * Get the event timeline for a specific inbox.
+   * @param inbox The inbox email address.
+   */
+  async getTimeline(inbox: string): Promise<any[]> {
+    const res = await this.http.request<{ data: any[] }>(`/inboxes/${encodeURIComponent(inbox)}/timeline`, { method: 'GET' });
+    return res.data;
+  }
+
+  /**
+   * Get delivery insights and failure flags for a specific inbox.
+   * @param inbox The inbox email address.
+   */
+  async getInsights(inbox: string): Promise<any[]> {
+    const res = await this.http.request<{ data: any[] }>(`/inboxes/${encodeURIComponent(inbox)}/insights`, { method: 'GET' });
+    return res.data;
+  }
+
   async unregister(inbox: string): Promise<UnregisterInboxResult> {
     return this.http.request<UnregisterInboxResult>(
       `/inboxes/${encodeURIComponent(inbox)}`,

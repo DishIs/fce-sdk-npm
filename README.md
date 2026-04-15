@@ -315,3 +315,14 @@ import type {
 - **Docs:** https://freecustom.email/api/docs
 - **Dashboard:** https://freecustom.email/api/dashboard
 - **Pricing:** https://freecustom.email/api/pricing
+### Observability & Debugging
+
+```typescript
+// Fetch the event timeline for an inbox
+const timeline = await client.inboxes.getTimeline('test@domain.com');
+console.log(timeline);
+
+// Fetch failure insights and warnings
+const insights = await client.inboxes.getInsights('test@domain.com');
+console.log(insights);
+```
