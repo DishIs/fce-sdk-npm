@@ -1,20 +1,37 @@
-# freecustom-email — JavaScript/TypeScript SDK
-# Official SDK · Disposable inboxes · OTP extraction · Real-time WebSocket
-# ─────────────────────────────────────────────────────────────────────────────
+# 🧪 FreeCustom.Email — Auth Flow Testing & OTP Debugging SDK
 
-## Installation
+[![npm version](https://img.shields.io/npm/v/freecustom-email.svg)](https://npmjs.org/package/freecustom-email)
+
+**Test, debug, and automate signup, OTP, and email-based authentication flows — with real-time observability.**
+
+FreeCustom.Email is an API-first platform for developers and QA teams to:
+- ✅ Create inboxes programmatically
+- ✅ Receive emails in real-time
+- ✅ Extract OTPs and verification links automatically
+- ✅ Debug full auth flows with timeline + latency insights
+
+## ⚡ Why this exists
+
+Testing auth flows is painful:
+- ❌ Flaky email delivery
+- ❌ Polling delays
+- ❌ OTP parsing issues
+- ❌ No visibility into failures
+
+FreeCustom.Email solves this by giving you: **👉 real-time auth flow debugging**.
+
+---
+
+## 📦 Installation
 
 ```bash
 npm install freecustom-email
-# or
-pnpm add freecustom-email
-# or
-yarn add freecustom-email
+# or pnpm add / yarn add
 ```
 
 ---
 
-## Quick Start
+## 🚀 Quick Start (Auth Flow Testing)
 
 ```typescript
 import { FreecustomEmailClient } from 'freecustom-email';
@@ -23,20 +40,147 @@ const client = new FreecustomEmailClient({
   apiKey: 'fce_your_api_key_here',
 });
 
-// Register an inbox
-await client.inboxes.register('mytest@ditube.info');
+// 1. Create inbox (pass `true` for zero-latency testing mode)
+const email = 'test@ditube.info';
+await client.inboxes.register(email, true);
 
-// Get latest OTP
-const result = await client.otp.get('mytest@ditube.info');
-console.log(result.otp); // '482910'
+// 2. Start test run (NEW - Groups events in your timeline)
+await client.inboxes.startTest(email, 'signup-test-1');
 
-// Clean up
-await client.inboxes.unregister('mytest@ditube.info');
+// 3. Trigger your app
+await fetch('https://yourapp.com/api/send-otp', {
+  method: 'POST',
+  body: JSON.stringify({ email }),
+});
+
+// 4. Wait for OTP
+const otp = await client.otp.waitFor(email);
+console.log('OTP:', otp);
+
+// 5. Debug the full flow
+const timeline = await client.inboxes.getTimeline(email, 'signup-test-1');
+console.log(timeline);
 ```
 
 ---
 
-## API Reference
+## 🔥 Debug Your Auth Flow
+
+### Timeline (see what actually happened)
+```typescript
+const timeline = await client.inboxes.getTimeline(email);
+console.log(timeline);
+// [
+//   { "type": "smtp_rcpt_received", "time": 820 },
+//   { "type": "email_received", "time": 830 },
+//   { "type": "otp_extracted", "time": 835 },
+//   { "type": "websocket_sent", "time": 840 }
+// ]
+```
+
+### Insights (why your test failed)
+```typescript
+const insights = await client.inboxes.getInsights(email);
+console.log(insights);
+// [
+//   { "type": "slow_delivery", "message": "Email took >3s" },
+//   { "type": "multiple_detected", "message": "Multiple emails detected" }
+// ]
+```
+
+### Test Runs (group your flows)
+```typescript
+await client.inboxes.startTest(email, 'signup-test-1');
+const timeline = await client.inboxes.getTimeline(email, 'signup-test-1');
+```
+
+---
+
+## ⚡ Real-time Debugging (WebSocket)
+
+```typescript
+const ws = client.realtime({ mailbox: email });
+
+ws.on('email', event => {
+  console.log('Flow update:', event);
+});
+
+await ws.connect();
+```
+
+---
+
+## 🧪 Full Playwright Example
+
+```typescript
+import { test, expect } from '@playwright/test';
+import { FreecustomEmailClient } from 'freecustom-email';
+
+const client = new FreecustomEmailClient({ apiKey: process.env.FCE_API_KEY! });
+
+test('signup flow', async ({ page }) => {
+  const email = 'test@ditube.info';
+
+  await client.inboxes.register(email, true);
+  await client.inboxes.startTest(email, 'e2e-signup');
+
+  await page.goto('/signup');
+  await page.fill('#email', email);
+  await page.click('button');
+
+  // Automatically waits for the email and extracts the code
+  const otp = await client.otp.waitFor(email);
+
+  await page.fill('#otp', otp);
+  await page.click('#verify');
+
+  // Debugging: View exactly how long delivery took
+  const timeline = await client.inboxes.getTimeline(email, 'e2e-signup');
+  console.log(timeline);
+});
+```
+
+---
+
+## 🔁 Old vs New Mental Model
+
+| Old (Temp Mail) | New (FreeCustom.Email) |
+| :--- | :--- |
+| receive emails | **test auth flows** |
+| read inbox | **debug flows** |
+| parse OTP manually | **auto extract + analyze** |
+| polling | **real-time events** |
+
+---
+
+## 📊 Plans (Updated Meaning)
+
+| Plan | What you get |
+| :--- | :--- |
+| **Free** | basic inbox |
+| **Startup** | real-time emails |
+| **Growth** | OTP + debugging |
+| **Enterprise** | full observability |
+
+---
+
+## 🔥 Most Important Methods (for devs)
+
+- `client.inboxes.startTest(email, testId)`
+- `client.otp.waitFor(email)`
+- `client.inboxes.getTimeline(email, testId)`
+- `client.inboxes.getInsights(email)`
+
+---
+
+## 🔗 Links
+- **Dashboard:** https://www.freecustom.email/api/dashboard
+- **Docs:** https://www.freecustom.email/api/docs
+- **Playground:** https://www.freecustom.email/api/playground
+
+---
+
+## 📚 Full API Reference
 
 ### Client
 
@@ -297,40 +441,3 @@ import type {
 
 ---
 
-## Plans
-
-| Plan       | Price    | Req/mo     | OTP | WebSocket |
-|------------|----------|------------|-----|-----------|
-| Free       | Free     | 5,000      | ❌  | ❌        |
-| Developer  | $7/mo    | 100,000    | ❌  | ❌        |
-| Startup    | $19/mo   | 500,000    | ❌  | ✅        |
-| Growth     | $49/mo   | 2,000,000  | ✅  | ✅        |
-| Enterprise | $149/mo  | 10,000,000 | ✅  | ✅        |
-
----
-
-## Links
-
-- **Playground:** https://freecustom.email/api/playground
-- **Docs:** https://freecustom.email/api/docs
-- **Dashboard:** https://freecustom.email/api/dashboard
-- **Pricing:** https://freecustom.email/api/pricing
-### Observability & Debugging
-
-```typescript
-// Fetch the event timeline for an inbox
-const timeline = await client.inboxes.getTimeline('test@domain.com');
-console.log(timeline);
-
-// Start a test boundary (creates a test run ID and logs a 'test_started' event)
-const testResult = await client.inboxes.startTest('test@domain.com', 'my-test-run-123');
-console.log('Test started:', testResult.test_id);
-
-// Fetch timeline filtered by test run
-const filteredTimeline = await client.inboxes.getTimeline('test@domain.com', 'my-test-run-123');
-console.log(filteredTimeline);
-
-// Fetch failure insights and warnings
-const insights = await client.inboxes.getInsights('test@domain.com');
-console.log(insights);
-```
