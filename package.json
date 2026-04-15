@@ -1,6 +1,6 @@
 {
   "name": "freecustom-email",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Official TypeScript/JavaScript SDK for FreeCustom.Email — disposable inboxes, OTP extraction, real-time WebSocket delivery",
   "keywords": [
     "disposable-email",

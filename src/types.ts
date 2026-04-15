@@ -86,6 +86,7 @@ export interface Message {
   text?: string;
   html?: string;
   otp: string | null;
+  otpScore?: number;
   verificationLink: string | null;
   hasAttachment: boolean;
   wasAttachmentStripped?: boolean;
@@ -104,6 +105,7 @@ export interface DeleteMessageResult {
 export interface OtpResult {
   success: true;
   otp: string | null;
+  score?: number;
   email_id?: string;
   from?: string;
   subject?: string;
@@ -248,6 +250,7 @@ export interface WsNewEmailEvent {
   text?: string;
   html?: string;
   otp: string | null;
+  otpScore?: number;
   verificationLink: string | null;
   hasAttachment: boolean;
   _upgrade_hint?: string;

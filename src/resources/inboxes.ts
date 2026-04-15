@@ -17,10 +17,12 @@ export class InboxesResource {
    * @example
    * const result = await client.inboxes.register('mytest@ditube.info');
    */
-  async register(inbox: string): Promise<RegisterInboxResult> {
+  async register(inbox: string, isTesting?: boolean): Promise<RegisterInboxResult> {
+    const body: Record<string, any> = { inbox };
+    if (isTesting !== undefined) body.isTesting = isTesting;
     return this.http.request<RegisterInboxResult>('/inboxes', {
       method: 'POST',
-      body:   { inbox },
+      body,
     });
   }
 
