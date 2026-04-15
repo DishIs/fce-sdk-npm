@@ -68,6 +68,12 @@ export interface UnregisterInboxResult {
   message: string;
 }
 
+export interface StartTestResult {
+  success: boolean;
+  message: string;
+  test_id: string;
+}
+
 // ── Message ───────────────────────────────────────────────────────────────────
 
 export interface Attachment {

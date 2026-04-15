@@ -322,6 +322,14 @@ import type {
 const timeline = await client.inboxes.getTimeline('test@domain.com');
 console.log(timeline);
 
+// Start a test boundary (creates a test run ID and logs a 'test_started' event)
+const testResult = await client.inboxes.startTest('test@domain.com', 'my-test-run-123');
+console.log('Test started:', testResult.test_id);
+
+// Fetch timeline filtered by test run
+const filteredTimeline = await client.inboxes.getTimeline('test@domain.com', 'my-test-run-123');
+console.log(filteredTimeline);
+
 // Fetch failure insights and warnings
 const insights = await client.inboxes.getInsights('test@domain.com');
 console.log(insights);

@@ -7,6 +7,7 @@ import type {
   InboxObject,
   RegisterInboxResult,
   UnregisterInboxResult,
+  StartTestResult,
 } from '../types.js';
 
 export class InboxesResource {
@@ -41,11 +42,25 @@ export class InboxesResource {
    * Unregister an inbox from your API account.
    */
   /**
+   * Start a new test boundary for this inbox.
+   */
+  async startTest(inbox: string, testId?: string): Promise<StartTestResult> {
+    const body: Record<string, any> = {};
+    if (testId) body.test_id = testId;
+    return this.http.request<StartTestResult>(`/inboxes/${encodeURIComponent(inbox)}/tests`, {
+      method: 'POST',
+      body,
+    });
+  }
+
+  /**
    * Get the event timeline for a specific inbox.
    * @param inbox The inbox email address.
+   * @param testId Optional test run ID to filter events.
    */
-  async getTimeline(inbox: string): Promise<any[]> {
-    const res = await this.http.request<{ data: any[] }>(`/inboxes/${encodeURIComponent(inbox)}/timeline`, { method: 'GET' });
+  async getTimeline(inbox: string, testId?: string): Promise<any[]> {
+    const query = testId ? `?test_id=${encodeURIComponent(testId)}` : '';
+    const res = await this.http.request<{ data: any[] }>(`/inboxes/${encodeURIComponent(inbox)}/timeline${query}`, { method: 'GET' });
     return res.data;
   }
 
