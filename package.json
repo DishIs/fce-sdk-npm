@@ -1,6 +1,6 @@
 {
   "name": "freecustom-email",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Official TypeScript/JavaScript SDK for FreeCustom.Email — disposable inboxes, OTP extraction, real-time WebSocket delivery",
   "keywords": [
     "disposable-email",
@@ -14,11 +14,11 @@
   ],
   "homepage": "https://www.freecustom.email/en",
   "bugs": {
-    "url": "https://github.com/dishis/fce-sdk-npm/issues"
+    "url": "https://github.com/DishIs/fce-sdk-npm/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fce-sdk-npm.git"
+    "url": "git+https://github.com/DishIs/fce-sdk-npm.git"
   },
   "license": "MIT",
   "author": "FreeCustom.Email <support@freecustom.email>",
