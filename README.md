@@ -41,7 +41,7 @@ const client = new FreecustomEmailClient({
 });
 
 // 1. Create inbox (pass `true` for zero-latency testing mode)
-const email = 'test@ditube.info';
+const email = 'test@haloforge.online';
 await client.inboxes.register(email, true);
 
 // 2. Start test run (NEW - Groups events in your timeline)
@@ -119,7 +119,7 @@ import { FreecustomEmailClient } from 'freecustom-email';
 const client = new FreecustomEmailClient({ apiKey: process.env.FCE_API_KEY! });
 
 test('signup flow', async ({ page }) => {
-  const email = 'test@ditube.info';
+  const email = 'test@haloforge.online';
 
   await client.inboxes.register(email, true);
   await client.inboxes.startTest(email, 'e2e-signup');
@@ -202,14 +202,14 @@ const client = new FreecustomEmailClient({
 
 ```typescript
 // Register
-await client.inboxes.register('mytest@ditube.info');
+await client.inboxes.register('mytest@haloforge.online');
 
 // List all registered inboxes
 const inboxes = await client.inboxes.list();
-// [{ inbox: 'mytest@ditube.info', local: 'mytest', domain: 'ditube.info' }]
+// [{ inbox: 'mytest@haloforge.online', local: 'mytest', domain: 'haloforge.online' }]
 
 // Unregister
-await client.inboxes.unregister('mytest@ditube.info');
+await client.inboxes.unregister('mytest@haloforge.online');
 ```
 
 ---
@@ -218,17 +218,17 @@ await client.inboxes.unregister('mytest@ditube.info');
 
 ```typescript
 // List all messages
-const messages = await client.messages.list('mytest@ditube.info');
+const messages = await client.messages.list('mytest@haloforge.online');
 
 // Get a specific message
-const msg = await client.messages.get('mytest@ditube.info', 'D3vt8NnEQ');
+const msg = await client.messages.get('mytest@haloforge.online', 'D3vt8NnEQ');
 console.log(msg.subject, msg.otp, msg.verificationLink);
 
 // Delete a message
-await client.messages.delete('mytest@ditube.info', 'D3vt8NnEQ');
+await client.messages.delete('mytest@haloforge.online', 'D3vt8NnEQ');
 
 // Wait for a message (polling helper)
-const msg = await client.messages.waitFor('mytest@ditube.info', {
+const msg = await client.messages.waitFor('mytest@haloforge.online', {
   timeoutMs:      30_000,
   pollIntervalMs: 2_000,
   match: m => m.from.includes('github.com'),
@@ -241,14 +241,14 @@ const msg = await client.messages.waitFor('mytest@ditube.info', {
 
 ```typescript
 // Get latest OTP (Growth plan+)
-const result = await client.otp.get('mytest@ditube.info');
+const result = await client.otp.get('mytest@haloforge.online');
 if (result.otp) {
   console.log('OTP:', result.otp);
   console.log('Link:', result.verification_link);
 }
 
 // Wait for OTP — polls until it arrives (Growth plan+)
-const otp = await client.otp.waitFor('mytest@ditube.info', {
+const otp = await client.otp.waitFor('mytest@haloforge.online', {
   timeoutMs: 30_000,
 });
 console.log('Got OTP:', otp);
@@ -261,12 +261,12 @@ console.log('Got OTP:', otp);
 ```typescript
 // Register → trigger email → wait for OTP → unregister — all in one call
 const otp = await client.getOtpForInbox(
-  'mytest@ditube.info',
+  'mytest@haloforge.online',
   async () => {
     // This function should trigger your app to send the verification email
     await fetch('https://yourapp.com/api/send-verification', {
       method: 'POST',
-      body: JSON.stringify({ email: 'mytest@ditube.info' }),
+      body: JSON.stringify({ email: 'mytest@haloforge.online' }),
     });
   },
   { timeoutMs: 30_000, autoUnregister: true },
@@ -281,7 +281,7 @@ console.log('Verified with OTP:', otp);
 ```typescript
 // Connect to real-time email delivery (Startup plan+)
 const ws = client.realtime({
-  mailbox:              'mytest@ditube.info', // undefined = subscribe to all your inboxes
+  mailbox:              'mytest@haloforge.online', // undefined = subscribe to all your inboxes
   autoReconnect:        true,
   reconnectDelayMs:     3_000,
   maxReconnectAttempts: 10,
@@ -360,7 +360,7 @@ await client.domains.removeCustom('mail.yourdomain.com');
 ```typescript
 // Register a webhook (Startup plan+)
 const hook = await client.webhooks.register(
-  'mytest@ditube.info',
+  'mytest@haloforge.online',
   'https://your-server.com/hooks/email',
 );
 console.log('Webhook ID:', hook.id);
@@ -403,7 +403,7 @@ import {
 } from 'freecustom-email';
 
 try {
-  const otp = await client.otp.get('mytest@ditube.info');
+  const otp = await client.otp.get('mytest@haloforge.online');
 } catch (err) {
   if (err instanceof AuthError) {
     console.error('Invalid API key');

@@ -13,7 +13,7 @@ export class OtpResource {
    * Requires Growth plan or above.
    *
    * @example
-   * const result = await client.otp.get('mytest@ditube.info');
+   * const result = await client.otp.get('mytest@haloforge.online');
    * if (result.otp) {
    *   console.log('OTP:', result.otp);
    *   console.log('Link:', result.verification_link);
@@ -32,10 +32,10 @@ export class OtpResource {
    *
    * @example
    * // Trigger your sign-up flow
-   * await myApp.signUp({ email: 'mytest@ditube.info' });
+   * await myApp.signUp({ email: 'mytest@haloforge.online' });
    *
    * // Wait up to 30s for the OTP
-   * const otp = await client.otp.waitFor('mytest@ditube.info');
+   * const otp = await client.otp.waitFor('mytest@haloforge.online');
    * console.log('Got OTP:', otp); // '482910'
    */
   async waitFor(

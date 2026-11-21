@@ -62,7 +62,7 @@ export class FreecustomEmailClient {
    * Requires Startup plan or above.
    *
    * @example
-   * const ws = client.realtime({ mailbox: 'mytest@ditube.info' });
+   * const ws = client.realtime({ mailbox: 'mytest@haloforge.online' });
    *
    * ws.on('connected', info => {
    *   console.log('Connected — plan:', info.plan);
@@ -95,8 +95,8 @@ export class FreecustomEmailClient {
    * Handles the full lifecycle in one call.
    *
    * @example
-   * const otp = await client.getOtpForInbox('mytest@ditube.info', async () => {
-   *   await myApp.sendVerificationEmail('mytest@ditube.info');
+   * const otp = await client.getOtpForInbox('mytest@haloforge.online', async () => {
+   *   await myApp.sendVerificationEmail('mytest@haloforge.online');
    * });
    * console.log('OTP:', otp);
    */

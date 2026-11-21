@@ -18,7 +18,7 @@ export class WebhooksResource {
    *
    * @example
    * const hook = await client.webhooks.register(
-   *   'mytest@ditube.info',
+   *   'mytest@haloforge.online',
    *   'https://your-server.com/hooks/email'
    * );
    * console.log('Webhook ID:', hook.id);

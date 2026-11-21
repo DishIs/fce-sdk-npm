@@ -14,7 +14,7 @@ export class MessagesResource {
   /**
    * List all messages in a registered inbox.
    * @example
-   * const messages = await client.messages.list('mytest@ditube.info');
+   * const messages = await client.messages.list('mytest@haloforge.online');
    */
   async list(inbox: string): Promise<Message[]> {
     const res = await this.http.request<ApiResponse<Message[]>>(
@@ -26,7 +26,7 @@ export class MessagesResource {
   /**
    * Get a single message by ID.
    * @example
-   * const msg = await client.messages.get('mytest@ditube.info', 'D3vt8NnEQ');
+   * const msg = await client.messages.get('mytest@haloforge.online', 'D3vt8NnEQ');
    */
   async get(inbox: string, messageId: string): Promise<Message> {
     const res = await this.http.request<ApiResponse<Message>>(
@@ -51,10 +51,10 @@ export class MessagesResource {
    *
    * @example
    * // Wait up to 30s for any email
-   * const msg = await client.messages.waitFor('mytest@ditube.info');
+   * const msg = await client.messages.waitFor('mytest@haloforge.online');
    *
    * // Wait up to 60s for an email from a specific sender
-   * const msg = await client.messages.waitFor('mytest@ditube.info', {
+   * const msg = await client.messages.waitFor('mytest@haloforge.online', {
    *   timeoutMs: 60_000,
    *   match: msg => msg.from.includes('github.com'),
    * });

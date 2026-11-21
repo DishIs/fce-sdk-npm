@@ -16,7 +16,7 @@ export class InboxesResource {
   /**
    * Register a new disposable inbox under your API account.
    * @example
-   * const result = await client.inboxes.register('mytest@ditube.info');
+   * const result = await client.inboxes.register('mytest@haloforge.online');
    */
   async register(inbox: string, isTesting?: boolean): Promise<RegisterInboxResult> {
     const body: Record<string, any> = { inbox };
@@ -31,7 +31,7 @@ export class InboxesResource {
    * List all inboxes registered under your API account.
    * @example
    * const inboxes = await client.inboxes.list();
-   * // [{ inbox: 'mytest@ditube.info', local: 'mytest', domain: 'ditube.info' }]
+   * // [{ inbox: 'mytest@haloforge.online', local: 'mytest', domain: 'haloforge.online' }]
    */
   async list(): Promise<InboxObject[]> {
     const res = await this.http.request<ApiResponse<InboxObject[]>>('/inboxes');
